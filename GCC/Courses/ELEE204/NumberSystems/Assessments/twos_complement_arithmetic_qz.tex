@@ -1,0 +1,38 @@
+%points: 6 
+Perform the following binary arithmetic using the four bit two's complement representation, showing all carries.  For each case, determine if overflow occurs. If it does, state why it occurs.
+\\
+\\
+$6 + -1$\\
+$-4 - 5$\\
+
+%start answer
+%vspace: 6cm
+Solution: \\
+\\
+$6 = 0110_2$\\
+$-1 = 1111_2$\\
+\\
+\begin{tabular}{cccccc}
+  C & 1 & 1 & 1 & 0 & 0 \\
+    &   & 0 & 1 & 1 & 0 \\
+    & + & 1 & 1 & 1 & 1 \\
+  \hline
+    &   & 0 & 1 & 0 & 1 \\
+\end{tabular} \\
+\\
+Overflow does not occur.\\
+\\
+$-4 = 1100_2$\\
+$5 = 0101_2$\\
+Note that $5$ complement is $1010_2$ and remember to use $c_{in}=1$.\\
+\\
+\begin{tabular}{cccccc}
+  C & 1 & 0 & 0 & 0 & 1 \\
+    &   & 1 & 1 & 0 & 0 \\
+    & + & 1 & 0 & 1 & 0 \\
+  \hline
+    &   & 0 & 1 & 1 & 1 \\
+\end{tabular} \\
+\\
+Overflow occurs because $c_{in} \neq c_{out}$ for MSB.\\
+%end answer

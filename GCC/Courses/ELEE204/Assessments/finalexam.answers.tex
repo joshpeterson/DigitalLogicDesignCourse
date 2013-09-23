@@ -1,0 +1,244 @@
+%Created with command:
+%"/home/josh/Teaching/trunk/Utilities/makeexam" "Final Exam" "Please complete each problem.  Show all of your work even if you cannot obtain the correct answer.  You may use only two sheets of letter sized paper for assistance." "../NumberSystems/Assessments/convert_hex_oct_bin_ex.tex" "../NumberSystems/Assessments/twos_complement_ex.tex" "../NumberSystems/Assessments/twos_complement_arithmetic_ex.tex" "../CMOSCircuits/Assessments/cmos_OR_gate_design.tex" "../CombinationalCircuits/Assessments/kmaps_ex.tex" "../VHDL/Assessments/process.tex" "../Decoders/Assessments/2to4decoder.tex" "../XOR/Assessments/memory_parity_extended.tex" "../Muxes/Assessments/74x138_demux.tex" "../LatchesAndFlipFlops/Assessments/latch_flip-flop.tex" "../LatchesAndFlipFlops/Assessments/d_flip-flop_clock.tex" "../StateMachines/Assessments/state_machine_excitation.tex" "../Counters/Assessments/free_running.tex" "../Memory/Assessments/ram_size.tex" "../Memory/Assessments/dram_cell.tex" "../Memory/Assessments/sram_implementation.tex" "../Memory/Assessments/rom_types.tex" "../Memory/Assessments/rom_structure_missing_parts.tex"
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{arev}
+\usepackage{longtable}
+\usepackage[hmargin=2cm,vmargin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\setlength{\parindent}{0pt}
+\title{Final Exam}
+\date{}
+\begin{document}
+\maketitle
+Please complete each problem.  Show all of your work, even if you cannot obtain the correct answer.  You may use only two sheets of letter sized paper for assistance. (80 points total)
+\begin{longtable}[l]{rp{17cm}}
+%file: ../NumberSystems/Assessments/convert_hex_oct_bin_ex.tex
+1.&\begin{minipage}[t]{\linewidth}(4 pt) Perform the following number system conversions. \\
+\\
+(a) $00101011_2 = ?_{16}$ \\
+(b) $00010011_2 = ?_8$ \\
+(c) $163_{16} = ?_8$ \\
+(d) $\textrm{AFDB} = ?_2$ \\
+
+Solution: \\
+\\
+(a) $00101011_2 = 0010_2 1011_2 = 2\textrm{B}_{16}$ \\
+(b) $00010011_2 = 010_2 011_2 = 23_8$ \\
+(c) $163_{16} = 0001_2 0110_2 0011_2 = 000_2 101_2 100_2 011_2 = 543_8$ \\
+(d) $\textrm{AFDB} = 1010_2 1111_2 1101_2 1100_2 = 1010111111011100_2$ \\
+\\
+\end{minipage}\\
+\medskip
+%file: ../NumberSystems/Assessments/twos_complement_ex.tex
+2.&\begin{minipage}[t]{\linewidth}(2 pt) Find the eight bit two's complement representation of each of the following numbers. \\
+\\
+(a) $-10$\\
+(b) $-36$
+
+Solution: \\
+\\
+(a)\\
+\begin{tabular}{rl}
+  $10 =$ & $00001010_2$\\
+         & $\Downarrow \textrm{complement}$\\
+         & $11110101_2$\\
+     $+$ & $00000001_2$\\
+         & $11110110_2$\\
+         & $= 1 \cdot -128 + 1 \cdot 64 + 1 \cdot 32 + 1 \cdot 16 + 1 \cdot 4 + 1 \cdot 2= -10$
+\end{tabular}\\
+\\
+(b)\\
+\begin{tabular}{rl}
+  $36 =$ & $00100100_2$\\
+         & $\Downarrow \textrm{complement}$\\
+         & $11011011_2$\\
+     $+$ & $00000001_2$\\
+         & $11011100_2$\\
+         & $= 1 \cdot -128 + 1 \cdot 64 + 1 \cdot 16 + 1 \cdot 8 + 1 \cdot 4 = -36$
+\end{tabular}\\
+\end{minipage}\\
+\medskip
+%file: ../NumberSystems/Assessments/twos_complement_arithmetic_ex.tex
+3.&\begin{minipage}[t]{\linewidth}(3 pt) Perform the following binary arithmetic using the four bit two's complement representation, showing all carries.  For each case, determine if overflow occurs. If it does, state why it occurs.
+\\
+\\
+$5 + -1$\\
+
+%vspace 6cm
+Solution: \\
+\\
+$5 = 0101_2$\\
+$-1 = 1111_2$\\
+\\
+\begin{tabular}{cccccc}
+  C & 1 & 1 & 1 & 1 & 0 \\
+    &   & 0 & 1 & 0 & 1 \\
+    & + & 1 & 1 & 1 & 1 \\
+  \hline
+    &   & 0 & 1 & 0 & 0 \\
+\end{tabular} \\
+\\
+Overflow does not occur.\\
+\end{minipage}\\
+\medskip
+%file: ../CMOSCircuits/Assessments/cmos_OR_gate_design.tex
+4.&\begin{minipage}[t]{\linewidth}(4 pt) Write the function table and draw the circuit diagram for a two input CMOS OR gate.  Note that this gate should use six transistors.\\ \\
+
+Solution: \\ \\
+\begin{tabular}{ccccccccc}
+  \textbf{A} & \textbf{B} & \textbf{Q1} & \textbf{Q2} & \textbf{Q3} & \textbf{Q4} & \textbf{Q5} & \textbf{Q6} & \textbf{Z} \\
+  \hline
+  L & L & off & on & off & on & on & off & L\\
+  L & H & off & on & on & off & off & on & H\\
+  H & L & on & off & off & on & off & on & H\\
+  H & H & on & off & on & off & off & on & H\\
+\end{tabular}
+\medskip
+\includegraphics{../CMOSCircuits/Assessments/CMOSORGate}
+\end{minipage}\\
+\medskip
+%file: ../CombinationalCircuits/Assessments/kmaps_ex.tex
+5.&\begin{minipage}[t]{\linewidth}(3 pt) Use Karnaugh maps to find a minimal sum of products represention of the following logic function.\\ \\
+$F=\prod_{W,X,Y,Z}(6,7,8,9,10,11,12,13,14)$\\
+
+Solution: \\ \\
+$F=\prod_{W,X,Y,Z}(6,7,8,9,10,11,12,13,14)=\sum_{W,X,Y,Z}(0,1,2,3,4,5,15)=W' \cdot X' + W' \cdot Y' + W \cdot X \cdot Y \cdot Z$\\
+\includegraphics{../CombinationalCircuits/Assessments/4VariableKMapExam}\\ \\
+\end{minipage}\\
+\medskip
+%file: ../VHDL/Assessments/process.tex
+6.&\begin{minipage}[t]{\linewidth}(2 pt) Briefly describe the role of the sensitivity list in the VHDL process statement.
+
+Solution: \\ \\
+The sensitivity list informs the simulator which signals should trigger the process to run when they change.
+\end{minipage}\\
+\medskip
+%file: ../Decoders/Assessments/2to4decoder.tex
+7.&\begin{minipage}[t]{\linewidth}(10 pt) Using the following logic circuit (a) write a logic function for each output (Y0, Y1, Y2, and Y3) and (b) determine which common component this logic circuit represents.\\
+\begin{center}
+  \includegraphics{../Decoders/Assessments/2to4BinaryDecoderLogic} \\
+\end{center}
+
+Solution: \\ \\
+(a)\\
+$Y0 = I0' \cdot I1' \cdot EN$\\
+$Y1 = I0 \cdot I1' \cdot EN$\\
+$Y2 = I0' \cdot I1 \cdot EN$\\
+$Y3 = I0 \cdot I1 \cdot EN$\\
+(b) This is a 2-to-4 binary decoder with enable.\\ \\
+\end{minipage}\\
+\medskip
+%file: ../XOR/Assessments/memory_parity_extended.tex
+8.&\begin{minipage}[t]{\linewidth}(8 pt) You have been asked to extend the memory parity circuit to work with a 16 bit data bus.  Given the following schematic diagram, correctly connect the two areas in the dotted lines - the ERROR signal circuit and the PIN input to the memory.  You may need to use some additional logic gates.
+\begin{center}
+  \includegraphics[scale=0.5]{../XOR/Assessments/MemoryCircuitParityExtended}
+\end{center}
+
+Solution: \\ \\
+\begin{center}
+  \includegraphics[scale=0.8]{../XOR/Assessments/MemoryCircuitParityExtendedSolution} \\
+\end{center}
+\end{minipage}\\
+\medskip
+%file: ../Muxes/Assessments/74x138_demux.tex
+9.&\begin{minipage}[t]{\linewidth}(4 pt) Using input signals SRC\_L, SEL0, SEL1, and SEL2, configure the inputs of the 74x128 decoder below to cause it to behave as a 1-bit demultiplexer.\\ \\
+\begin{center}
+  \includegraphics{../Muxes/Assessments/74x138Schematic}
+\end{center}
+
+Solution: \\ \\
+\begin{center}
+  \includegraphics{../Muxes/Assessments/74x138DMuxSchematic}
+\end{center}
+\end{minipage}\\
+\medskip
+%file: ../LatchesAndFlipFlops/Assessments/latch_flip-flop.tex
+10.&\begin{minipage}[t]{\linewidth}(2 pt) Briefly explain the key difference between a latch and a flip-flop. \\
+
+Solution: \\ \\
+A flip-flop operates using a clock signal, a latch does not. \\
+\end{minipage}\\
+\medskip
+%file: ../LatchesAndFlipFlops/Assessments/d_flip-flop_clock.tex
+11.&\begin{minipage}[t]{\linewidth}(4 pt) The following figure is a partial implementation of a D flip-flop using two D latches.  Correctly connect the clock input (CLK) within the circuit.  Note that you may need to use one or more logic gates to complete this problem. \\ \\
+\begin{center}
+  \includegraphics{../LatchesAndFlipFlops/Assessments/DFlipFlopLogicNoClock}
+\end{center}
+
+Solution: \\ \\
+\begin{center}
+  \includegraphics{../LatchesAndFlipFlops/Assessments/DFlipFlopLogic}
+\end{center}
+\end{minipage}\\
+\medskip
+%file: ../StateMachines/Assessments/state_machine_excitation.tex
+12.&\begin{minipage}[t]{\linewidth}(6 pt) Write the excitation equations for the following state machine.
+\begin{center}
+  \includegraphics[scale=0.7]{../StateMachines/Assessments/Wakerly_7_43}
+\end{center}
+
+Solution: \\ \\
+$$D0 = Q1' \cdot X + Q0 \cdot X' + Q2$$
+$$D1 = Q2' \cdot Q0 \cdot X + Q1 \cdot X' + Q2 \cdot Q1$$
+$$D2 = Q2 \cdot Q0' \cdot Q0] \cdot X' \cdot Y$$
+\end{minipage}\\
+\medskip
+%file: ../Counters/Assessments/free_running.tex
+13.&\begin{minipage}[t]{\linewidth}(6 pt) Configure the 74x163 counter below to be a free running counter. \\ \\
+\begin{center}
+  \includegraphics[scale=0.5]{../Counters/Assessments/74x163Schematic}
+\end{center}
+
+Solution: \\ \\
+\begin{center}
+  \includegraphics[scale=0.4]{../Counters/Assessments/74x163SchematicFreeRunning}
+\end{center}
+\end{minipage}\\
+\medskip
+%file: ../Memory/Assessments/ram_size.tex
+14.&\begin{minipage}[t]{\linewidth}(2 pt) How many bits of data can a RAM with 4 address bits and 16 data bits store?\\ \\
+
+Solution: \\ \\
+$2^4*16 = 256$ bits
+\end{minipage}\\
+\medskip
+%file: ../Memory/Assessments/dram_cell.tex
+15.&\begin{minipage}[t]{\linewidth}(4 pt) Given the following one bit DRAM cell, what voltage levels would you place on the word line and the bit line to write a value of zero to the bit stored?\\ \\
+\begin{center}
+  \includegraphics{../Memory/Assessments/DRAMCell}
+\end{center}
+
+Solution: \\ \\
+The word line should be high, the bit line should be low.
+\end{minipage}\\
+\medskip
+%file: ../Memory/Assessments/sram_implementation.tex
+16.&\begin{minipage}[t]{\linewidth}(2 pt) To implement a single bit using SRAM, would you use a D latch or a D flip-flop?\\ \\
+
+Solution: \\ \\
+A D latch would be used, since an SRAM is not a synchronous circuit.\\
+\end{minipage}\\
+\medskip
+%file: ../Memory/Assessments/rom_types.tex
+17.&\begin{minipage}[t]{\linewidth}(4 pt) Briefly decribe the difference between EEPROM and flash EEPROM.\\ \\
+
+Solution: \\ \\
+Flash EEPROM can be erased in large chunks, EEPROM can be erased at the bit level.\\
+\end{minipage}\\
+\medskip
+%file: ../Memory/Assessments/rom_structure_missing_parts.tex
+18.&\begin{minipage}[t]{\linewidth}(10 pt) The following diagram of a ROM with 6 address inputs and 1 data output is missing two standard combinational logic components.  Correctly complete the diagram by drawing and connecting the two components.\\ \\
+\begin{center}
+  \includegraphics[scale=0.4]{../Memory/Assessments/ROMStructureMissingParts}
+\end{center}
+
+Solution: \\ \\
+\begin{center}
+  \includegraphics[scale=0.4]{../Memory/Assessments/ROMStructure}
+\end{center}
+\end{minipage}\\
+\medskip
+\end{longtable}
+\end{document}

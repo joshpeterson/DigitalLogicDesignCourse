@@ -1,0 +1,35 @@
+%Created with command:
+%"/home/josh/Teaching/trunk/Utilities/makeexam" "Homework 8 - State Machines in VHDL" "Please complete the problem.  As usual you may work together.  However make sure the work that you submit is yours." "../StateMachines/Assessments/counter.tex"
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{arev}
+\usepackage{longtable}
+\usepackage[hmargin=2cm,vmargin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\setlength{\parindent}{0pt}
+\title{Homework 8 - State Machines in VHDL}
+\date{}
+\begin{document}
+\maketitle
+Please complete the problem.  As usual you may work together.  However make sure the work that you submit is yours. (15 points total)
+\begin{longtable}[l]{rp{17cm}}
+%file: ../StateMachines/Assessments/counter.tex
+1.&\begin{minipage}[t]{\linewidth}(15 pt) Design the archiecture for a two bit binary counter in VHDL.  Use the following entity:
+\lstset{language=VHDL}
+\begin{lstlisting}
+entity counter is
+    port (clock, A, reset: in std_logic;
+          Z: out std_logic);
+end counter;
+\end{lstlisting}
+Note that all of the signals are active high.  This counter should count four consecutive clock ticks when A is asserted.  When the fourth clock tick occurs, the output Z should be asserted.  When the fifth clock tick occurs, the output Z should become zero, and remain zero until four consecutive clock ticks occur with A asserted.  If the reset intput is asserted, the next clock tick will cause the circuit to begin counting at zero.\\ \\
+Note: You may use any method of design to complete this assignment, however I would recommend using direct VHDL design.\\ \\
+I will provide a test bench that will be used to test your VHDL code.
+
+\vspace{8cm
+}
+\end{minipage}\\
+\medskip
+\end{longtable}
+\end{document}

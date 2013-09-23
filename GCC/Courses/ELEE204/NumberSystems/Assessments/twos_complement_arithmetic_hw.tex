@@ -1,0 +1,65 @@
+%points: 12
+Perform the following binary arithmetic using the four bit two's complement representation, showing all carries.  For each case, determine if overflow occurs. If it does, state why it occurs.\\
+\\
+\\
+$3 + 2$\\
+$-1 + 1$\\
+$-7 + -2$\\
+$6 - -6$\\
+
+%start answer
+Solution: \\
+\\
+$3 = 0011_2$\\
+$2 = 0010_2$\\
+\\
+\begin{tabular}{cccccc}
+  C &   & 0 & 1 & 0 & 0 \\
+    &   & 0 & 0 & 1 & 1 \\
+    & + & 0 & 0 & 1 & 0 \\
+  \hline
+    &   & 0 & 1 & 0 & 1 \\
+\end{tabular} \\
+\\
+Overflow does not occur.\\
+\\
+$-1 = 1111_2$\\
+$1 = 0001_2$\\
+\\
+\begin{tabular}{cccccc}
+  C & 1 & 1 & 1 & 1 & 0 \\
+    &   & 1 & 1 & 1 & 1 \\
+    & + & 0 & 0 & 0 & 1 \\
+  \hline
+    &   & 0 & 0 & 0 & 0 \\
+\end{tabular} \\
+\\
+Overflow does not occur.\\
+\\
+$-7 = 1001_2$\\
+$-2 = 1110_2$\\
+\\
+\begin{tabular}{cccccc}
+  C & 1 & 0 & 0 & 0 & 0 \\
+    &   & 1 & 0 & 0 & 1 \\
+    & + & 1 & 1 & 1 & 0 \\
+  \hline
+    &   & 0 & 1 & 1 & 1 \\
+\end{tabular} \\
+\\
+Overflow occurs because $c_{in} \neq c_{out}$ for MSB.\\
+\\
+$6 = 0110_2$\\
+$-6 = 1010_2$\\
+Note that $-6$ complement is $0101_2$ and remember to use $c_{in}=1$.\\
+\\
+\begin{tabular}{cccccc}
+  C &   & 1 & 1 & 1 & 1 \\
+    &   & 0 & 1 & 1 & 0 \\
+    & + & 0 & 1 & 0 & 1 \\
+  \hline
+    &   & 1 & 1 & 0 & 0 \\
+\end{tabular} \\
+\\
+Overflow occurs because $c_{in} \neq c_{out}$ for MSB.\\
+%end answer

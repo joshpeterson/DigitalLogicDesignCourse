@@ -1,0 +1,130 @@
+#!/usr/bin/python
+
+import os
+import sys
+import glob
+
+class file_reader:
+    def __init__(self):
+        self.common_dir = os.environ.get("LECTURE_TEX_COMMON_DIR")
+        if self.common_dir == None:
+            self.common_dir = "."
+
+    def read_file(self, filename):
+        file = open(os.path.join(self.common_dir,filename))
+        file_text = file.read()
+        file.close()
+        return file_text
+
+def clean_files(filename_root):
+    extensions_to_delete = [".tex", ".aux", ".log", ".nav", ".out", ".snm", ".toc"]
+    for ext in extensions_to_delete:
+        if os.path.exists(filename_root + ext):
+            os.remove(filename_root + ext)
+
+is_pre_processing = True
+is_cleaning = True
+is_building_all = False
+
+if "noclean" in sys.argv:
+    is_cleaning = False
+
+if "nopreprocess" in sys.argv:
+    is_pre_processing = False
+
+if "all" in sys.argv:
+    is_building_all = True
+
+if len(sys.argv) >= 2:
+    tex_filename = sys.argv[1]
+else:
+    tex_files = glob.glob("*.tex")
+    if len(tex_files) != 1:
+        raise "Unable to determine .tex input file name, please provide it."
+    tex_filename = tex_files[0]
+    
+tex_filename_root = os.path.splitext(tex_filename)[0]
+
+files = file_reader()
+style = files.read_file("style.tex")
+commands = files.read_file("commands.tex")
+preamble = files.read_file("preamble.tex")
+frontmatter = files.read_file("frontmatter.tex")
+presentation = files.read_file("presentation.tex")
+if is_building_all:
+    notes = files.read_file("notes.tex")
+    handout = files.read_file("handout.tex")
+
+tex_file = open(tex_filename, "r")
+tex = tex_file.readlines()
+tex_file.close()
+
+base = ""
+
+if is_pre_processing:
+    slide_num = 0
+    is_processing_frame = False
+    for line in tex:
+        if line.find("\\section") != -1 or line.find("\\subsection") != -1:
+            line = "\\mode<presentation>\n{\n" + line + "}\n"
+        elif line.find("\\begin{frame}") != -1:
+            base += "\\mode<presentation>\n{\n"
+            is_processing_frame = True
+            slide_num += 1
+
+        base += line
+
+        if is_processing_frame and line.find("\\begin{frame}") != -1:
+            base += "\\label{slide:" + str(slide_num) + "}\n"
+
+        if is_processing_frame and line.find("\end{frame}") != -1:
+            base += "}\n\slideshot{slide:" + str(slide_num) + "}\n"
+            is_processing_frame = False
+else:
+    for line in tex:
+        base += line
+
+base = style + commands + preamble + base
+begin_document_text = "\\begin{document}\n"
+document_start = base.find(begin_document_text)
+if document_start != -1:
+    begin_document_text_end_index = document_start + len(begin_document_text)
+    base = base[:begin_document_text_end_index ] + frontmatter + base[begin_document_text_end_index:]
+
+presentation_filename_root = tex_filename_root + ".presentation"
+presentation_filename = presentation_filename_root + ".tex"
+presentation_file = open(presentation_filename , "w")
+presentation_file.write(presentation + base)
+presentation_file.close()
+
+if is_building_all:
+    notes += "\n\\setjobnamebeamerversion{" + presentation_filename_root + "}\n"
+
+    notes_filename_root = tex_filename_root + ".notes"
+    notes_filename = notes_filename_root + ".tex"
+    notes_file = open(notes_filename , "w")
+    notes_file.write(notes + base)
+    notes_file.close()
+
+    handout += "\n\\setjobnamebeamerversion{" + presentation_filename_root + "}\n"
+
+    handout_filename_root = tex_filename_root + ".handout"
+    handout_filename = handout_filename_root + ".tex"
+    handout_file = open(handout_filename , "w")
+    handout_file.write(handout + base)
+    handout_file.close()
+
+os.system("pdflatex " + presentation_filename)
+os.system("pdflatex " + presentation_filename)
+
+if is_building_all:
+    os.system("pdflatex " + notes_filename)
+    os.system("pdflatex " + notes_filename)
+    os.system("pdflatex " + handout_filename)
+    os.system("pdflatex " + handout_filename)
+
+if is_cleaning:
+    clean_files(presentation_filename_root)
+    if is_building_all:
+        clean_files(notes_filename_root)
+        clean_files(handout_filename_root)

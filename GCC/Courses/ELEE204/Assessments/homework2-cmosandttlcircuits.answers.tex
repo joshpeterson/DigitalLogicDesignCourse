@@ -1,0 +1,80 @@
+%Created with command:
+%"/home/josh/Teaching/trunk/Utilities/makeexam" "Homework 2 - CMOS and TTL Circuits" "Attempt the following problems.  Please show all of your work.  You may work with others however make sure that all work you submit is yours." "../CMOSCircuits/Assessments/cmos_AND_gate_analysis.tex" "../CMOSCircuits/Assessments/cmos_nand_nor_conversion_to_logic_diagram.tex" "../CMOSCircuits/Assessments/dc_noise_margin.tex" "../CMOSCircuits/Assessments/wakerly_3_61.tex" "../TTLCircuits/Assessments/ttl_buffer.tex"
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{arev}
+\usepackage{longtable}
+\usepackage[hmargin=2cm,vmargin=2cm]{geometry}
+\usepackage{graphicx}
+\setlength{\parindent}{0pt}
+\title{Homework 2 - CMOS and TTL Circuits}
+\date{}
+\begin{document}
+\maketitle
+Attempt the following problems.  Please show all of your work.  You may work with others, however make sure that all work you submit is yours. (16 points total)
+\begin{longtable}[l]{rp{17cm}}
+%file: ../CMOSCircuits/Assessments/cmos_AND_gate_analysis.tex
+1.&\begin{minipage}[t]{\linewidth}(4 pt) Determine the function table for the following CMOS logic gate.  Is this a standard gate?  If so, which gate is it? \\ \\
+\includegraphics{../CMOSCircuits/Assessments/CMOSANDGate}\\
+
+Solution: \\ \\
+\begin{tabular}{ccccccccc}
+  \textbf{A} & \textbf{B} & \textbf{Q1} & \textbf{Q2} & \textbf{Q3} & \textbf{Q4} & \textbf{Q5} & \textbf{Q6} & \textbf{Z} \\
+  \hline
+  L & L & off & on & off & on & on & off & L\\
+  L & H & off & on & on & off & on & off & L\\
+  H & L & on & off & off & on & on & off & L\\
+  H & H & on & off & on & off & off & on & H\\
+\end{tabular} \\
+This is a standard gate, the AND gate.\\
+\end{minipage}\\
+\medskip
+%file: ../CMOSCircuits/Assessments/cmos_nand_nor_conversion_to_logic_diagram.tex
+2.&\begin{minipage}[t]{\linewidth}(2 pt) Convert the following CMOS circuit to a logic diagram.\\ \\
+\includegraphics{../CMOSCircuits/Assessments/CMOSNANDNOR}
+
+Solution: \\ \\
+\includegraphics{../CMOSCircuits/Assessments/NANDNAND}
+\end{minipage}\\
+\medskip
+%file: ../CMOSCircuits/Assessments/dc_noise_margin.tex
+3.&\begin{minipage}[t]{\linewidth}(2 pt) Given the following information from a data sheet, compute the HIGH and LOW state DC noise margins.\\ \\
+$\textrm{V}_{\textrm{OHmin}} = 4.9 \textrm{V}$\\
+$\textrm{V}_{\textrm{IHmin}} = 3.5 \textrm{V}$\\
+$\textrm{V}_{\textrm{ILmax}} = 1.5 \textrm{V}$\\
+$\textrm{V}_{\textrm{OLmax}} = 0.2 \textrm{V}$\\
+
+Solution: \\ \\
+HIGH state: $\textrm{V}_{\textrm{OHmin}} - \textrm{V}_{\textrm{IHmin}} = 1.4 \textrm{V}$\\
+LOW state: $\textrm{V}_{\textrm{ILmax}} - \textrm{V}_{\textrm{OLmax}} = 1.3 \textrm{V}$\\
+\end{minipage}\\
+\medskip
+%file: ../CMOSCircuits/Assessments/wakerly_3_61.tex
+4.&\begin{minipage}[t]{\linewidth}(4 pt) Do problem 3.61 in the text.\\ \\
+
+Solution: \\ \\
+\includegraphics{../CMOSCircuits/Assessments/Wakerly_3_61Logic}
+\medskip
+\begin{tabular}{ccccccccc}
+  \textbf{A} & \textbf{B} & \textbf{Q1} & \textbf{Q2} & \textbf{Q3} & \textbf{Q4} & \textbf{Q5} & \textbf{Q6} & \textbf{Z} \\
+  \hline
+  L & L & on & off & off & on & on & off & L\\
+  L & H & on & off & on & off & off & on & H\\
+  H & L & off & on & off & on & on & off & L\\
+  H & H & off & on & on & off & on & off & L\\
+\end{tabular}
+\medskip
+\includegraphics{../CMOSCircuits/Assessments/Wakerly_3_61CMOS}
+\end{minipage}\\
+\medskip
+%file: ../TTLCircuits/Assessments/ttl_buffer.tex
+5.&\begin{minipage}[t]{\linewidth}(4 pt) Use bipolar junction transistors to design a one input TLL buffer circuit.\\ \\
+
+Solution: \\ \\
+\includegraphics{../TTLCircuits/Assessments/TTLBuffer}
+\\
+This is two common emitters in series.
+\end{minipage}\\
+\medskip
+\end{longtable}
+\end{document}

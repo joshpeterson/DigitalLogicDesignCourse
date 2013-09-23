@@ -1,0 +1,17 @@
+%points: 10
+Using VHDL, write the architecture for a 74x682 comparator.  Use the entity provided below.  I will email you a test bench that you should use to validate your program.  You may use your text, examples from class, and even resources on from the Internet for this problem.  However, please \textbf{do not discuss the solution to this problem with other students in this class}.  Please email me your .vhd file by 6:00 AM Saturday, March 21.
+\lstset{language=VHDL}
+\begin{lstlisting}
+entity msi74x682 is
+    port (P: in std_logic_vector(7 downto 0);
+          Q: in std_logic_vector(7 downto 0);
+          PEQQ_L: out std_logic;
+          PGTQ_L: out std_logic);
+end msi74x682;
+\end{lstlisting}
+
+%start answer
+%vspace: 2cm
+Solution: \\ \\
+\lstinputlisting{%base path%msi74x682.vhd}
+%end answer

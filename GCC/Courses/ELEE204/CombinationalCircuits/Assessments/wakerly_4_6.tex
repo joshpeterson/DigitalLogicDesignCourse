@@ -1,0 +1,105 @@
+%points: 6
+Do problem 4.6 in the text.\\ \\
+
+%start answer
+%vspace: 12cm
+Solution: \\ \\
+(a)\\
+\begin{tabular}{rll}
+  $F$ & $= W \cdot X \cdot Y \cdot Z \cdot (W \cdot X \cdot Y \cdot Z' + W \cdot X' \cdot Y \cdot Z + W' \cdot X \cdot Y \cdot Z + W \cdot X \cdot Y' \cdot Z)$ &\\
+      & $= W \cdot X \cdot Y \cdot Z \cdot W \cdot X \cdot Y \cdot Z' + W \cdot X \cdot Y \cdot Z \cdot W \cdot X' \cdot Y \cdot Z$ &\\ 
+      & $\textrm{    }+ W \cdot X \cdot Y \cdot Z \cdot W' \cdot X \cdot Y \cdot Z + W \cdot X \cdot Y \cdot Z \cdot W \cdot X \cdot Y' \cdot Z$ & (T8)\\
+      & $= W \cdot X \cdot Y \cdot Z \cdot Z' + W \cdot X \cdot Y \cdot Z \cdot X'+ W \cdot X \cdot Y \cdot Z \cdot W' + W \cdot X \cdot Y \cdot Z \cdot Y'$ & (T3')\\
+      & $= 0 \cdot 0 \cdot 0 \cdot 0$ & (T5')\\
+      & $= 0$ & (T2')\\
+\end{tabular}\\ \\
+Let the following be true:\\
+\begin{tabular}{rl}
+  $A$ & $= W \cdot X \cdot Y \cdot Z$\\
+  $B$ & $= W \cdot X \cdot Y \cdot Z'$\\
+  $C$ & $= W \cdot X' \cdot Y \cdot Z$\\
+  $D$ & $= W' \cdot X \cdot Y \cdot Z$\\
+  $E$ & $= W \cdot X \cdot Y' \cdot Z$\\
+\end{tabular}\\ \\
+Truth Table:\\
+\begin{tabular}{cccc|ccccc|c}
+  $W$ & $X$ & $Y$ & $Z$ & $A$ & $B$ & $C$ & $D$ & $E$ & \textbf{$F$}\\
+  \hline
+   0  &  0  &  0  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 }\\
+   0  &  0  &  0  &  1  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 }\\
+   0  &  0  &  1  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 }\\
+   0  &  0  &  1  &  1  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 }\\
+   0  &  1  &  0  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 }\\
+   0  &  1  &  0  &  1  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 }\\
+   0  &  1  &  1  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 }\\
+   0  &  1  &  1  &  1  &  0  &  0  &  0  &  1  &  0  & \textbf{ 0 }\\
+   1  &  0  &  0  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 }\\
+   1  &  0  &  0  &  1  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 }\\
+   1  &  0  &  1  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 }\\
+   1  &  0  &  1  &  1  &  0  &  0  &  1  &  0  &  0  & \textbf{ 0 }\\
+   1  &  1  &  0  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 }\\
+   1  &  1  &  0  &  1  &  0  &  0  &  0  &  0  &  1  & \textbf{ 0 }\\
+   1  &  1  &  1  &  0  &  0  &  1  &  0  &  0  &  0  & \textbf{ 0 }\\
+   1  &  1  &  1  &  1  &  1  &  0  &  0  &  0  &  0  & \textbf{ 0 }\\
+\end{tabular}\\ \\
+(b)\\
+\begin{tabular}{rll}
+  $F$ & $=A \cdot B + A \cdot B \cdot C' \cdot D + A \cdot B \cdot D \cdot E' + A' \cdot B \cdot C' \cdot E + A' \cdot B' \cdot C' \cdot E$ &\\
+      & $=A \cdot B + A \cdot B \cdot C' \cdot D + A \cdot B \cdot D \cdot E' + A' \cdot C' \cdot E$ & (T10)\\
+      & $=A \cdot B \cdot (1 + C' \cdot D' + D \cdot E') + A' \cdot C' \cdot E$ & (T8)\\
+      & $=A \cdot B + A' \cdot C' \cdot E$ & (T2)\\
+\end{tabular}\\ \\
+Let the following be true:\\
+\begin{tabular}{rl}
+  $U$ & $= A \cdot B$\\
+  $V$ & $= A \cdot B \cdot C' \cdot D$\\
+  $W$ & $= A \cdot B \cdot D \cdot E'$\\
+  $X$ & $= A' \cdot B \cdot C' \cdot E$\\
+  $Y$ & $= A' \cdot B' \cdot C' \cdot E$\\
+  $Z$ & $= A \cdot B + A' \cdot C' \cdot E$\\
+\end{tabular}\\ \\
+Based on the logic function $F=Z$.\\
+Truth Table:\\
+\begin{tabular}{ccccc|ccccc|cc}
+  $A$ & $B$ & $C$ & $D$ & $E$ & $U$ & $V$ & $W$ & $X$ & $Y$ & \textbf{$Z$} & \textbf{$F$}\\
+  \hline
+   0  &  0  &  0  &  0  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   0  &  0  &  0  &  0  &  1  &  0  &  0  &  0  &  0  &  1  & \textbf{ 1 } & \textbf{ 1 }\\
+   0  &  0  &  0  &  1  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   0  &  0  &  0  &  1  &  1  &  0  &  0  &  0  &  0  &  1  & \textbf{ 1 } & \textbf{ 1 }\\
+   0  &  0  &  1  &  0  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   0  &  0  &  1  &  0  &  1  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   0  &  0  &  1  &  1  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   0  &  0  &  1  &  1  &  1  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   0  &  1  &  0  &  0  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   0  &  1  &  0  &  0  &  1  &  0  &  0  &  0  &  1  &  0  & \textbf{ 1 } & \textbf{ 1 }\\
+   0  &  1  &  0  &  1  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   0  &  1  &  0  &  1  &  1  &  0  &  0  &  0  &  1  &  0  & \textbf{ 1 } & \textbf{ 1 }\\
+   0  &  1  &  1  &  0  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   0  &  1  &  1  &  0  &  1  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   0  &  1  &  1  &  1  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   0  &  1  &  1  &  1  &  1  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   1  &  0  &  0  &  0  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   1  &  0  &  0  &  0  &  1  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   1  &  0  &  0  &  1  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   1  &  0  &  0  &  1  &  1  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   1  &  0  &  1  &  0  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   1  &  0  &  1  &  0  &  1  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   1  &  0  &  1  &  1  &  0  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   1  &  0  &  1  &  1  &  1  &  0  &  0  &  0  &  0  &  0  & \textbf{ 0 } & \textbf{ 0 }\\
+   1  &  1  &  0  &  0  &  0  &  1  &  0  &  0  &  0  &  0  & \textbf{ 1 } & \textbf{ 1 }\\
+   1  &  1  &  0  &  0  &  1  &  1  &  0  &  0  &  0  &  0  & \textbf{ 1 } & \textbf{ 1 }\\
+   1  &  1  &  0  &  1  &  0  &  1  &  1  &  1  &  0  &  0  & \textbf{ 1 } & \textbf{ 1 }\\
+   1  &  1  &  0  &  1  &  1  &  1  &  1  &  0  &  0  &  0  & \textbf{ 1 } & \textbf{ 1 }\\
+   1  &  1  &  1  &  0  &  0  &  1  &  0  &  0  &  0  &  0  & \textbf{ 1 } & \textbf{ 1 }\\
+   1  &  1  &  1  &  0  &  1  &  1  &  0  &  0  &  0  &  0  & \textbf{ 1 } & \textbf{ 1 }\\
+   1  &  1  &  1  &  1  &  0  &  1  &  0  &  1  &  0  &  0  & \textbf{ 1 } & \textbf{ 1 }\\
+   1  &  1  &  1  &  1  &  1  &  1  &  0  &  0  &  0  &  0  & \textbf{ 1 } & \textbf{ 1 }\\
+\end{tabular}\\ \\
+(c)\\
+\begin{tabular}{rll}
+  $F$ & $=M \cdot R \cdot P + Q \cdot O' \cdot R' + M \cdot N + O \cdot N \cdot M + Q \cdot P \cdot M \cdot O'$ &\\
+      & $=M \cdot P \cdot R + Q \cdot O' \cdot R' + M \cdot N + Q \cdot P \cdot M \cdot O'$ & (T9)\\
+      & $=M \cdot (P \cdot R + N) + Q \cdot O' \cdot (R' + M \cdot P)$ & (T8)\\
+\end{tabular}\\ \\
+%end answer

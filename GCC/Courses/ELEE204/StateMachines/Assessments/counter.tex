@@ -1,0 +1,18 @@
+%points: 15
+Design the archiecture for a two bit binary counter in VHDL.  Use the following entity:
+\lstset{language=VHDL}
+\begin{lstlisting}
+entity counter is
+    port (clock, A, reset: in std_logic;
+          Z: out std_logic);
+end counter;
+\end{lstlisting}
+Note that all of the signals are active high.  This counter should count four consecutive clock ticks when A is asserted.  When the fourth clock tick occurs, the output Z should be asserted.  When the fifth clock tick occurs, the output Z should become zero, and remain zero until four consecutive clock ticks occur with A asserted.  If the reset intput is asserted, the next clock tick will cause the circuit to begin counting at zero.\\ \\
+Note: You may use any method of design to complete this assignment, however I would recommend using direct VHDL design.\\ \\
+I will provide a test bench that will be used to test your VHDL code.
+
+%start answer
+%vspace: 8cm
+Solution: \\ \\
+\lstinputlisting{%base path%counter.vhd}
+%end answer

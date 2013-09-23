@@ -1,0 +1,27 @@
+%points: 2
+Perform the following binary subtractions, showing all borrows. \\
+\\
+$10110010_2 - 00100011_2$ \\
+$11110011_2 - 10101011_2$\\
+
+%start answer
+Solution: \\
+\\
+\begin{tabular}{cccccccccc}
+    &   &   &   &   &   &   &   & 11& 10\\
+  B &   & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 \\
+    &   & 1 & 0 & 1 & 1 & 0 & 0 & 1 & 0 \\
+    & - & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 \\
+  \hline
+    &   & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+\end{tabular} \\
+\\
+\begin{tabular}{cccccccccc}
+    &   &   &   &   &   & 10&   &   &   \\
+  B &   & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+    &   & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 1 \\
+    & - & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 \\
+  \hline
+    &   & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 \\
+\end{tabular} \\
+%end answer

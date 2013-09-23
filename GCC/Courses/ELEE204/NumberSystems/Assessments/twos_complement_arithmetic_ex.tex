@@ -1,0 +1,23 @@
+%points: 3
+Perform the following binary arithmetic using the four bit two's complement representation, showing all carries.  For each case, determine if overflow occurs. If it does, state why it occurs.
+\\
+\\
+$5 + -1$\\
+
+%start answer
+%vspace 6cm
+Solution: \\
+\\
+$5 = 0101_2$\\
+$-1 = 1111_2$\\
+\\
+\begin{tabular}{cccccc}
+  C & 1 & 1 & 1 & 1 & 0 \\
+    &   & 0 & 1 & 0 & 1 \\
+    & + & 1 & 1 & 1 & 1 \\
+  \hline
+    &   & 0 & 1 & 0 & 0 \\
+\end{tabular} \\
+\\
+Overflow does not occur.\\
+%end answer

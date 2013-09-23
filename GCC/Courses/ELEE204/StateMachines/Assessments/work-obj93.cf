@@ -1,0 +1,7 @@
+v 3
+file . "counter.vhd" "20090415103146.000" "20090415063151.647":
+  entity counter at 1( 0) + 0 on 89;
+  architecture counter_arch of counter at 9( 146) + 0 on 90;
+file . "counter_testbench.vhd" "20090415103110.000" "20090415063153.772":
+  entity counter_testbench at 1( 0) + 0 on 91;
+  architecture counter_testbench_arch of counter_testbench at 7( 96) + 0 on 92;

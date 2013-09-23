@@ -1,0 +1,29 @@
+%points: 2
+Find the eight bit two's complement representation of each of the following numbers. \\
+\\
+(a) $-10$\\
+(b) $-36$
+
+%start answer
+Solution: \\
+\\
+(a)\\
+\begin{tabular}{rl}
+  $10 =$ & $00001010_2$\\
+         & $\Downarrow \textrm{complement}$\\
+         & $11110101_2$\\
+     $+$ & $00000001_2$\\
+         & $11110110_2$\\
+         & $= 1 \cdot -128 + 1 \cdot 64 + 1 \cdot 32 + 1 \cdot 16 + 1 \cdot 4 + 1 \cdot 2= -10$
+\end{tabular}\\
+\\
+(b)\\
+\begin{tabular}{rl}
+  $36 =$ & $00100100_2$\\
+         & $\Downarrow \textrm{complement}$\\
+         & $11011011_2$\\
+     $+$ & $00000001_2$\\
+         & $11011100_2$\\
+         & $= 1 \cdot -128 + 1 \cdot 64 + 1 \cdot 16 + 1 \cdot 8 + 1 \cdot 4 = -36$
+\end{tabular}\\
+%end answer

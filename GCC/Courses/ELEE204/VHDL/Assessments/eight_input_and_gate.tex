@@ -1,0 +1,15 @@
+%points: 4
+Using VHDL, write the architecture for an eight input AND gate.  Use the entity provided below.  I will email you a test bench that you should use to validate your program.  You may use your text, examples from class, and even resources on from the Internet for this problem.  However, please \textbf{do not dicuss the solution to this problem with other students in this class}.\\
+\lstset{language=VHDL}
+\begin{lstlisting}
+entity eight_input_and_gate is
+    port (X: in std_logic_vector(7 downto 0);
+          F: out std_logic);
+end eight_input_and_gate;
+\end{lstlisting}
+
+%start answer
+%vspace: 2cm
+Solution: \\ \\
+\lstinputlisting{%base path%eight_input_and_gate.vhd}
+%end answer

@@ -1,0 +1,260 @@
+\title{VHDL}
+\begin{document}
+\section{VHDL Concepts}
+
+\begin{frame}{VHDL History}
+  \begin{itemize}
+    \item VHDL was developed by the DoD and IEEE.
+    \item It was standardized in 1987, and updated in 1993 and again in 2002.
+    \item It was based on Pascal and Ada.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Features}
+  \begin{itemize}
+    \item VHDL is strongly typed.
+    \item VHDL designs are hierarchical.
+    \item It provides a well defined separation between \alert{interface} and \alert{implementation}.
+    \item VHDL can model concurrency, timing, and clocking as well as synchronous and asynchronous operations.
+    \item VHDL can be used to simulate the behavior of a circuit.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Interface and implementation}
+  \begin{block}{Key Engineering Concept}
+    Whenever possible, separate the interface of a component (how the outside world sees it), from its implementation (how it accomplishes its task).
+  \end{block}
+  \begin{itemize}
+     \item I like to refer to this as the messy room principle.
+     \item This will often save you in your career (bosses love it).
+     \item Don't overkill, too much separation is just as bad - it adds unnecessary overhead and confusion.
+  \end{itemize}
+\end{frame}
+
+\section{VHDL Program Structure}
+
+\begin{frame}{Interface and implementation}
+  VHDL accomplishes this separation by separating each component into two parts:
+  \begin{itemize}
+    \item A VHDL \alert{entity} describes a component's inputs and outputs (its interface).
+    \item A VHDL \alert{architecture} describes a component's behavior (its implementation).
+  \end{itemize}
+  Any given architecture can use another component by instantiating its entity.
+\end{frame}
+
+\subsection{Entity Definitions}
+
+\begin{frame}{Entity description}
+  An entity consists of the following:
+  \begin{itemize}
+    \item One entity name
+    \item One or more signal names, which consist of:
+      \begin{itemize}
+        \item One mode, which must be one of:
+          \begin{itemize}
+            \item in
+            \item out
+            \item buffer
+            \item inout
+          \end{itemize}
+        \item One signal type which can be built in or user defined
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Entity example}
+  \begin{example}
+    Write the entity definition for a two input AND gate.
+  \end{example}
+\end{frame}
+
+\subsection{Architecture Definitions}
+
+\begin{frame}{Architecture description}
+  An architecture consists of the following:
+  \begin{itemize}
+    \item One architecture name
+    \item Zero or more type declarations
+    \item Zero or more signal declarations
+    \item Zero or more constant declarations
+    \item Zero or more function declarations
+    \item Zero or more procedure declarations
+    \item Zero or more component declarations
+    \item One or more concurrent statements that define how the input signals affect the output signals
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Architecture example}
+  \begin{example}
+    Write the architecture definition for a two input AND gate with the previously created entity definition.
+  \end{example}
+\end{frame}
+
+\section{VHDL Types, Constants, and Arrays}
+\subsection{Types}
+
+\begin{frame}{VHDL Types}
+  VHDL has a few predefined types, including
+  \begin{itemize}
+    \item integer (at least $-2^{31}+1$ through $2^{31}-1$)
+    \item character (basically ASCII)
+    \item boolean (true or false)
+  \end{itemize}
+  VHDL also allows user defined types, which are usually enumerations.  The most important user defined type is STD\_ULOGIC.
+\end{frame}
+
+\subsection{Constants}
+
+\begin{frame}{Constants}
+  Constants in VHDL improve readability of code.  They consist of a name, a type and a value.
+  \begin{itemize}
+    \item constant WORD\_SIZE: integer := 16;
+    \item constant DOUBLE\_WORD\_SIZE: integer := WORD\_SIZE*2;
+    \item constant FIRST\_LETTER: character := 'A';
+  \end{itemize}
+\end{frame}
+
+\subsection{Arrays}
+
+\begin{frame}{Arrays}
+  Arrays in VHDL represent a group of variables.
+  \begin{itemize}
+    \item type days\_in\_february is array (1 to 28) of integer;
+    \item type DOUBLE\_WORD is array (DOUBLE\_WORD\_SIZE-1 downto 0) of STD\_ULOGIC;
+    \item type STD\_LOGIC\_VECTOR is array (natural range <>) of STD\_LOGIC;
+  \end{itemize}
+  Arrays may or may not specify their number of elements in their type definition.\\
+  Arrays can be set in a number of ways:
+  \begin{itemize}
+    \item byte := ('0','0','1','1','0','0','0','0');
+    \item byte := (2=$>$'1',3=$>$'1', others=$>$'0');
+    \item byte := "001100000";
+  \end{itemize}
+\end{frame}
+
+\section{VHDL Functions and Packages}
+
+\begin{frame}{VHDL functions and procedures}
+  \begin{definition}
+    A VHDL \alert{function} is a set of statements that execute sequentially and produce some return value.  A VHDL \alert{procedure} is like a function, but it does not return a value.
+  \end{definition}
+  \begin{itemize}
+    \item A function must specify its \alert{parameters}, the signal values that it accepts as input.
+    \item A function must specify its return type.
+  \end{itemize}
+  \begin{block}{Operator Overloading}
+    VHDL allows operators like +, -, and, or, etc. to be overloaded, as in other languages (like C++).
+  \end{block}
+\end{frame}
+
+\begin{itemize}
+  \item Show AND gate function example (and\_gate\_function.vhd).
+  \item Show the operator overloading AND gate example (and\_gate\_operator.vhd)
+\end{itemize}
+
+\begin{frame}{VHDL libraries}
+  \begin{definition}
+    A VHDL compilers stores information used for a project in a \alert{library}.  Each project has an implicit library, usually called ``work''.
+  \end{definition}
+  \begin{itemize}
+    \item The clause \texttt{library ieee;} causes the ieee library to be available to the file.
+    \item Each VHDL file has an implicit \texttt{library work;} clause.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{VHDL packages}
+  \begin{definition}
+    A \alert{package} is a set of signals, types, constants, functions, procedures, or component declarations that can be used in other VHDL files.
+  \end{definition}
+  \begin{itemize}
+    \item Packages can be included with the use clause, as in \texttt{use ieee.std\_logic\_1164.all;}.
+    \item Parts of packages can be selective included as needed, as in \texttt{use ieee.std\_logic\_1164.std\_ulogic;}.
+  \end{itemize}
+\end{frame}
+
+Show AND gate function with std\_logic.
+
+\section{VHDL Design}
+
+\begin{frame}{Concurrent statements}
+  \begin{itemize}
+    \item Remember, in VHDL, each statement is concurrent.  That is, each statement executes logically at the same time as all other statements.
+    \item This means that a change to a value of a signal in a later statement may effect that signals value in a previous statements.
+    \item A statement as seemingly innocuous as \texttt{X <= not X} is actually an infinite loop.
+  \end{itemize}
+  Note to worry though, we can in fact take advantage of this concurrency to perform intuitive design.
+\end{frame}
+
+\subsection{Structural Design}
+
+\begin{frame}{Structural design}
+  \begin{itemize}
+    \item Often we think of digital logic circuits as just that - circuits, where everything happens at once.
+    \item This is natural concurrency.  We apply the inputs, and the output is immediate available.
+    \item So we can design VHDL this way, like the roommate control circuit.
+  \end{itemize}
+\end{frame}
+
+Do the roommate control circuit structural example.
+
+\subsection{Dataflow Design}
+
+\begin{frame}{Dataflow design}
+  Instead of considering the actual logic gates of a circuit, we can think about the signals within the circuit.
+  \begin{block}{Conditional signal assignment}
+    VHDL allows for signals to be assigned conditionally, like this \texttt{HUNGRY <= '1' when not FULL(me);}.
+  \end{block}
+  \begin{block}{Explicit signal selection}
+    We can even select the signal output by examining all of the possible inputs:\\
+    \texttt{with NUMBER select\\ \t EVEN <= '1' when "00" | "10", '0' when others;}
+  \end{block}
+\end{frame}
+
+Do the roommate control circuit dataflow example.
+
+\subsection{Behavioral Design}
+
+\begin{frame}{The process statement}
+  \begin{definition}
+    The VHDL \alert{process} statements defines a list of sequential statements that execute when a signal specified in the \alert{sensitivity list} of the process changes.
+  \end{definition}
+  \begin{itemize}
+    \item When a signal that a given process cares about changes, the statements in the process are executed sequentially.
+    \item After all statements are executed, the signals assigned values in the process are updated and the circuit execution continues at the next time step.
+    \item A process may contain \alert{variables} which can be used to compute intermediate values that are not tied directly to signals.
+  \end{itemize}
+\end{frame}
+
+Do the roommate control circuit behavioral example.
+
+\section{VHDL Control Structures}
+
+\begin{frame}{VHDL if statement}
+  VHDL provides an if/else if /else statement, which is spelled like this:
+  \begin{block}{VHDL if/else if/else}
+    \texttt{if homework=due\_next\_week then ACTION <= 'relax';\\elsif homework=due\_tomorrow then ACTION <= 'doit';\\else ACTION <='panic';\\end if;}
+  \end{block}
+\end{frame}
+
+\begin{frame}{VHDL case statement}
+  VHDL provides a case statement, which is often more readable than an if/else chain.  It can also be easier for a synthesizer to implement.
+  \begin{block}{VHDL case}
+    \texttt{case homework is\\ \hspace{24pt} when due\_next\_week => ACTION <= 'relax';\\ \hspace{24pt} when due\_tomorrow => ACTION <= 'doit';\\ \hspace{24pt} when others => ACTION <='panic';\\end case;}
+  \end{block}
+\end{frame}
+
+\begin{frame}{VHDL for loop}
+  VHDL provides a for loop, which is spelled like this:
+  \begin{block}{VHDL for Loop (Gauss in kindergarten)}
+    \texttt{for i in 1 to 100 loop\\ \hspace{24pt} sum = sum + i;\\ end loop;}
+  \end{block}
+\end{frame}
+
+\begin{frame}{VHDL while loop}
+  VHDL also provides a while loop, which is spelled like this:
+  \begin{block}{VHDL while Loop (Gauss in kindergarten again)}
+    \texttt{i=1;\\ while i <= 100 loop\\ \hspace{24pt} sum = sum + i;\\ end loop;}
+  \end{block}
+\end{frame}
+
+\end{document}

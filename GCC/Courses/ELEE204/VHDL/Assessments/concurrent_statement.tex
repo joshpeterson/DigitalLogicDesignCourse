@@ -1,0 +1,24 @@
+%points: 2
+A colleague shows you the following VHDL code, which does not work as expected.  Briefly describe the problem with this architecture.
+\lstset{language=VHDL}
+\begin{lstlisting}
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity inverter is
+    port (X: in std_logic;
+          F: out std_logic);
+end entity;
+
+architecture inverter_arch of inverter is
+begin
+    X <= not X;
+    F <= X;
+end inverter_arch;
+\end{lstlisting}
+
+%start answer
+%vspace: 6cm
+Solution: \\ \\
+The X <= not X; statement is an infinite loop. \\ \\
+%end answer

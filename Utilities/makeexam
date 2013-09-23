@@ -1,0 +1,123 @@
+#!/usr/bin/python
+
+import os
+import sys
+import glob
+
+class file_reader:
+    def __init__(self):
+        self.common_dir = os.environ.get("LECTURE_TEX_COMMON_DIR")
+        if self.common_dir == None:
+            self.common_dir = "."
+
+    def read_file(self, filename):
+        file = open(os.path.join(self.common_dir,filename))
+        file_text = file.read()
+        file.close()
+        return file_text
+
+def clean_files(filename_root):
+    extensions_to_delete = [".aux", ".log", ".nav", ".out", ".snm", ".toc"]
+    for ext in extensions_to_delete:
+        if os.path.exists(filename_root + ext):
+            os.remove(filename_root + ext)
+
+title = sys.argv[1]
+directions = sys.argv[2]
+
+filenames_start_idx = 3
+
+is_cleaning = True
+if sys.argv[3] == "noclean":
+    is_cleaning = False
+    filenames_start_idx = 4
+
+assessment = "%Created with command:\n%" + str(sys.argv).strip("[]").replace(",","").replace("'","\"") + "\n"
+
+files = file_reader()
+assessment += files.read_file("assessment.tex")
+
+assessment += "\\title{" + title + "}\n\\date{}\n\\begin{document}\n\\maketitle\n" + directions
+
+question_num = 0
+in_answer = False
+in_tabular = 0
+in_points_line = False
+
+base = "\\begin{longtable}[l]{rp{17cm}}\n"
+base_with_answers = "\\begin{longtable}[l]{rp{17cm}}\n"
+
+total_points = 0
+points = 0
+num_questions = len(sys.argv[filenames_start_idx:])
+
+for question_filename in sys.argv[filenames_start_idx:]:
+  base_path = os.path.split(question_filename)[0]
+
+  question_file = open(question_filename,"r")
+  question = question_file.readlines()
+  question_file.close()
+
+  question_num += 1
+  vspace = "4cm"
+
+  base += "%file: " + question_filename + "\n"
+  base_with_answers += "%file: " + question_filename + "\n"
+  for line in question:
+
+    if line.find("%base path%") != -1:
+        line = line.replace("%base path%",base_path + "/")
+
+    if points != 0:
+        total_points += points
+        base += str(question_num) + ".&\\begin{minipage}[t]{\\linewidth}(" + str(points) + " pt) "
+        base_with_answers += str(question_num) + ".&\\begin{minipage}[t]{\\linewidth}(" + str(points) + " pt) "
+        points = 0
+        in_points_line = True
+    else:
+        in_points_line = False
+
+    if line.find("%points:") != -1:
+        points = int(line[9:])
+    elif line.find("%start answer") != -1:
+        in_answer = True
+    elif line.find("%vspace:") != -1:
+        vspace = line[9:]
+    elif line.find("%end answer") != -1:
+        in_answer = False
+        base += "\\vspace{" + vspace + "}\n\\end{minipage}\\\\\n"
+        base_with_answers += "\\end{minipage}\\\\\n"
+    else:
+        if in_answer == False:
+            base += line
+            base_with_answers += line
+        else:
+            base_with_answers += line
+
+  base += "\\medskip\n"
+  base_with_answers += "\\medskip\n"
+
+base += "\\end{longtable}\n\\end{document}"
+base_with_answers += "\\end{longtable}\n\\end{document}"
+
+assessment += " (" + str(total_points) + " points total)\n"
+
+assessment_filename_root = title.replace(" ","").lower()
+
+assessment_filename = assessment_filename_root + ".tex"
+assessment_file = open(assessment_filename , "w")
+assessment_file.write(assessment + base)
+assessment_file.close()
+
+assessment_with_answers_filename_root = assessment_filename_root + ".answers"
+assessment_with_answers_filename = assessment_with_answers_filename_root + ".tex"
+assessment_with_answers_file = open(assessment_with_answers_filename , "w")
+assessment_with_answers_file.write(assessment + base_with_answers)
+assessment_with_answers_file.close()
+
+os.system("pdflatex " + assessment_filename)
+os.system("pdflatex " + assessment_with_answers_filename)
+
+if is_cleaning:
+  clean_files(assessment_filename_root)
+  clean_files(assessment_with_answers_filename_root)

@@ -1,0 +1,67 @@
+%points: 10
+Do problem 7.18 in the text.  Please explicitly show each of the seven steps in the procedure for state machine analysis that we discussed in class. \\ \\
+
+%start answer
+%vspace: 12cm
+Solution: \\ \\
+Step 1: Write the logic equations for the combinational input.
+$$D2 = (D2 + D1)' \oplus (D1 \oplus D2)$$
+$$D1 = D2$$
+$$D0 = D1$$
+Step 2: Write the transition equations. \\ \\
+Characteristic equations for each flip-flop:
+$$Q2* = D2$$
+$$Q1* = D1$$
+$$Q0* = D0$$
+Transition equations:
+$$Q2* = (D2 + D1)' \oplus (D1 \oplus D2)$$
+$$Q1* = D2$$
+$$Q0* = D1$$
+Step 3: Construct the state table. \\ \\
+\begin{tabular}{ccc|ccc}
+  \textbf{Q2} & \textbf{Q1} & \textbf{Q0} & \textbf{Q2*} & \textbf{Q1*} & \textbf{Q0*} \\
+  \hline
+  0 & 0 & 0 & 1 & 0 & 0 \\
+  0 & 0 & 1 & 0 & 0 & 0 \\
+  0 & 1 & 0 & 1 & 0 & 1 \\
+  0 & 1 & 1 & 0 & 0 & 1 \\
+  1 & 0 & 0 & 0 & 1 & 0 \\
+  1 & 0 & 1 & 1 & 1 & 0 \\
+  1 & 1 & 0 & 1 & 1 & 1 \\
+  1 & 1 & 1 & 0 & 1 & 1 \\
+\end{tabular} \\ \\
+Step 4: Assign state names and construct a state table. \\ \\
+\begin{tabular}{c|c}
+  \textbf{S} & \textbf{S*} \\
+  \hline
+  0 & 4 \\
+  1 & 0 \\
+  2 & 5 \\
+  3 & 1 \\
+  4 & 2 \\
+  5 & 6 \\
+  6 & 7 \\
+  7 & 3 \\
+\end{tabular} \\ \\
+Step 5: Determine the output equations. \\ \\
+$$Q2 = Q2$$
+$$Q1 = Q1$$
+$$Q0 = Q0$$
+Step 6: Construct the state/output table. \\ \\
+\begin{tabular}{c|cc}
+  \textbf{S} & \textbf{S*} & \textbf{Q2 Q1 Q0} \\ 
+  \hline
+  0 & 4 & 100 \\
+  1 & 0 & 000 \\
+  2 & 5 & 101 \\
+  3 & 1 & 001 \\
+  4 & 2 & 010 \\
+  5 & 6 & 110 \\
+  6 & 7 & 111 \\
+  7 & 3 & 011 \\
+\end{tabular} \\ \\
+Step 7: Draw the state diagram. \\ \\
+\begin{center}
+  \includegraphics{%base path%Wakerly_7_18_StateDiagram}
+\end{center}
+%end answer
